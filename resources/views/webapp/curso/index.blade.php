@@ -2,6 +2,39 @@
 
 @section('titulo', $curso->nombre)
 
+@section('css')
+    <style>
+        body {
+            padding-top: 52px!important;
+        }
+
+        .titulo-curso {
+            color: #fff;
+            text-shadow: 2px 1px 0px rgba(150, 150, 150, 1);
+        }
+        .curso-cover{
+            background: url({{ $curso->cover}}) no-repeat center center;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+
+        @media (min-width: 768px) {
+            .container-curso{
+                margin-top: -100px;
+                background-color: #fff;
+                border-radius: 3px;
+                padding: 40px 50px!important;
+                max-width: 800px;
+            }
+            .curso-cover{
+                min-height: 300px;
+            }
+        }
+    </style>
+@endsection
+
 @section('content')
     <style>
         .panel-card{
@@ -33,9 +66,19 @@
         .indice .fa-check-circle{
             color: #61b54e;
         }
+        .v-middle{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
-    <div class="container" style="max-width: 750px;">
-        <h1>{{ $curso->nombre }}</h1>
+
+    <div class="jumbotron curso-cover text-center v-middle">
+        <h2 class="titulo-curso">{{ $curso->nombre }}</h2>
+    </div>
+
+    <div class="container container-curso">
         @foreach($curso->getLeccionesActivas() as $l)
             <div class="panel-card">
                 <div class="indice text-center">

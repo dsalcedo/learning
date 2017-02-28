@@ -45,7 +45,7 @@
     <script>
         $('#linkCarreras').addClass('active');
         $("#color").spectrum({
-            color: "#f00"
+            preferredFormat: "hex"
         });
     </script>
 @endsection

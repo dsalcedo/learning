@@ -29,7 +29,12 @@
                             {{ $l->nombre }}
                         </a>
                     </td>
-                    <td>{{ ($l->publicado) ? 'Publicado' : 'No publicado' }}</td>
+                    <td>
+                        <select class="estado form-control" data-leccion="{{ $l->id }}">
+                            <option value="1" {{ ($l->publicado) ? 'selected="selected"' : '' }}>Publicado</option>
+                            <option value="0" {{ (!$l->publicado) ? 'selected="selected"' : '' }}>No publicado</option>
+                        </select>
+                    </td>
                     <td class="text-center">
                         <a href="" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Editar titulo">
                             <i class="fa fa-pencil-square" aria-hidden="true"></i>
@@ -109,6 +114,16 @@
             var i = $('#leccionesForm .row').length;
             items.remove();
             e.preventDefault();
-        })
+        });
+
+        $('select').on('change', function (e) {
+           var lid = $(this).data('leccion'),
+               val = $(this).val();
+
+           $.post("{{ route('ajax.leccion.manage') }}", {'leccion':lid, 'valor':val}, function (res) {
+
+           });
+
+        });
     </script>
 @endsection

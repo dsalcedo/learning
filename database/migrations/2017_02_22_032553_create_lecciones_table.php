@@ -16,6 +16,7 @@ class CreateLeccionesTable extends Migration
         Schema::create('lecciones', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('curso_id')->unsigned();
+            $table->integer('lugar')->unsigned();
             $table->string('nombre');
             $table->boolean('publicado')->default(false);
             $table->timestamps();

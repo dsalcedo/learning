@@ -16,7 +16,6 @@ class CreateLeccionesContenidosTable extends Migration
         Schema::create('lecciones_contenidos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('leccion_id')->unsigned();
-            $table->integer('lugar')->unsigned();
             $table->text('contenido');
             $table->timestamps();
 

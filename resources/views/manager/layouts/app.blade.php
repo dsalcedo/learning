@@ -7,6 +7,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="_token" content="{{ csrf_token() }}">
     <link rel="icon" href="../../favicon.ico">
 
     <title>@yield('titulo', 'Hackrhub')</title>
@@ -98,6 +99,11 @@
     }());
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
+    });
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        }
     });
 </script>
 @yield('js')

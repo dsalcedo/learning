@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Manager;
 
+use App\Modelos\Cursos\Leccion;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -65,5 +66,19 @@ class ManagerLeccionesController extends Controller
         }
 
         return redirect()->route('leccion.administrar.contenido', $leccion->id);
+    }
+
+    public function ajaxLeccion()
+    {
+
+        if(!$this->req->ajax()){
+            return abort(404, 'No existe el recurso solicitado');
+        }
+
+        $leccion = Leccion::find($this->req->get('leccion'));
+        $leccion->publicado = $this->req->get('valor');
+        $leccion->save();
+
+        return response()->json( ['success' => true] );
     }
 }

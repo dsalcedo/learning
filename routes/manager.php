@@ -33,6 +33,7 @@ Route::group(['namespace'=>'Manager'], function (){
         Route::get('{cursoId}/lecciones', 'ManagerLeccionesController@index')->name('manage.curso.lecciones');
         Route::get('{cursoId}/lecciones/crear', 'ManagerLeccionesController@crear')->name('curso.lecciones.crear');
         Route::post('{cursoId}/lecciones/crear', 'ManagerLeccionesController@crearPost')->name('lecciones.crear.post');
+        Route::post('ajax/leccion', 'ManagerLeccionesController@ajaxLeccion')->name('ajax.leccion.manage');
 
         Route::get('administrar/contenido/leccion/{leccionId}', 'ManagerLeccionesController@contenido')->name('leccion.administrar.contenido');
         Route::post('administrar/contenido/leccion/{leccionId}', 'ManagerLeccionesController@contenidoPost')->name('administrar.contenido.post');
