@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLeccionContenidosTable extends Migration
+class CreateLeccionesContenidosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateLeccionContenidosTable extends Migration
      */
     public function up()
     {
-        Schema::create('leccion_contenidos', function (Blueprint $table) {
+        Schema::create('lecciones_contenidos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('leccion_id')->unsigned();
+            $table->integer('lugar')->unsigned();
             $table->text('contenido');
             $table->timestamps();
 

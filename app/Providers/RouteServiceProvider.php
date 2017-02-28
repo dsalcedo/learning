@@ -23,8 +23,12 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Route::model('usuarioId', 'App\Modelos\Usuario\Usuario');
+        Route::model('suscripcionId', 'App\Modelos\Catalogo\Suscripciones');
         Route::model('carreraId', 'App\Modelos\Cursos\Carreras');
         Route::model('cursoId', 'App\Modelos\Cursos\Curso');
+        Route::model('leccionId', 'App\Modelos\Cursos\Leccion');
+
         parent::boot();
     }
 
@@ -36,10 +40,9 @@ class RouteServiceProvider extends ServiceProvider
     public function map()
     {
         $this->mapApiRoutes();
-
         $this->mapWebRoutes();
-
         $this->mapManagerRoutes();
+        $this->mapWebappRoutes();
     }
 
     /**
@@ -77,5 +80,13 @@ class RouteServiceProvider extends ServiceProvider
              ->middleware('web')
              ->namespace($this->namespace)
              ->group(base_path('routes/manager.php'));
+    }
+
+    protected function mapWebappRoutes()
+    {
+        Route::prefix('app')
+            ->middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/webapp.php'));
     }
 }

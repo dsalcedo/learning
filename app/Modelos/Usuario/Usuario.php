@@ -32,4 +32,19 @@ class Usuario extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function getFullname()
+    {
+        return $this->nombre.' '.$this->apellidos;
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany('App\Modelos\Catalogo\Roles', 'usuarios_roles', 'usuario_id', 'rol_id')->withTimestamps();
+    }
 }

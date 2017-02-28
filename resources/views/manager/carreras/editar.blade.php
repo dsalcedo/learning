@@ -2,6 +2,10 @@
 
 @section('titulo', 'Carreras > Editar')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/spectrum.css') }}">
+@endsection
+
 @section('content')
 
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -13,6 +17,14 @@
             <div class="form-group">
                 {!! Form::label('nombre', 'Nombre') !!}
                 {!! Form::text('nombre', null, ['class'=>'form-control']) !!}
+            </div>
+            <div class="form-group">
+                {!! Form::label('descripcion', 'Descripcion') !!}
+                {!! Form::textarea('descripcion', null, ['class'=>'form-control', 'rows'=>3]) !!}
+            </div>
+            <div class="form-group">
+                {!! Form::label('color', 'Color') !!}
+                {!! Form::text('color', null,['class'=>'form-control', 'id'=>'color']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('cover', 'Cover') !!}
@@ -28,8 +40,14 @@
 
 @endsection
 
+
 @section('js')
+    <script src="{{ asset('js/spectrum.js') }}"></script>
     <script>
         $('#linkCarreras').addClass('active');
+        $("#color").spectrum({
+            preferredFormat: "hex",
+            showInput: true
+        });
     </script>
 @endsection

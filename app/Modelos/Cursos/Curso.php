@@ -27,4 +27,9 @@ class Curso extends Model
     {
         return $this->hasMany('App\Modelos\Cursos\Leccion', 'curso_id');
     }
+
+    public function getLeccionesActivas()
+    {
+        return $this->getLecciones()->where('publicado', true)->get();
+    }
 }

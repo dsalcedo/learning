@@ -31,6 +31,8 @@ class ManagerCarrerasController extends Controller
         $this->validate($this->req, [
             "clave" => "required|min:3|max:255|unique:carreras",
             "nombre" => "required|min:3|max:255",
+            "descripcion" => "required",
+            "color" => "required",
             "cover" => "required|min:3|max:255",
             "publicado" => "required"
         ]);
@@ -51,12 +53,16 @@ class ManagerCarrerasController extends Controller
         $this->validate($this->req, [
             "clave" => "required|min:3|max:255",
             "nombre" => "required|min:3|max:255",
+            "descripcion" => "required",
+            "color" => "required",
             "cover" => "required|min:3|max:255",
             "publicado" => "required"
         ]);
 
         $carrera->clave  = $this->req->get('clave');
         $carrera->nombre = $this->req->get('nombre');
+        $carrera->descripcion = $this->req->get('descripcion');
+        $carrera->color = $this->req->get('color');
         $carrera->cover = $this->req->get('cover');
         $carrera->publicado = $this->req->get('publicado');
         $carrera->save();

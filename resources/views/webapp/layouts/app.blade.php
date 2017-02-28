@@ -11,14 +11,13 @@
 
     <title>@yield('titulo', 'Hackrhub')</title>
 
-    <!-- Bootstrap core CSS -->
+    @yield('css')
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/webapp.css') }}" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!--<link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">-->
-    @yield('css')
-    <link href="{{ asset('css/manager.css') }}" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -70,11 +69,8 @@
     </div>
 </nav>
 
-<div class="container-fluid">
-    <div class="row">
-        @include('manager.layouts.sidebar')
-        @yield('content')
-    </div>
+<div class="container">
+    @yield('content')
 </div>
 
 @yield('modals')

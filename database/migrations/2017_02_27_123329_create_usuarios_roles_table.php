@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCarrerasTable extends Migration
+class CreateUsuariosRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateCarrerasTable extends Migration
      */
     public function up()
     {
-        Schema::create('carreras', function (Blueprint $table) {
+        Schema::create('usuarios_roles', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('clave');
-            $table->string('nombre');
-            $table->text('descripcion')->nullable();
-            $table->string('color')->nullable();
-            $table->boolean('publicado')->default(false);
-            $table->string('cover')->nullable();
+            $table->integer('usuario_id')->unsigned();
+            $table->integer('rol_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('cascade');
+            $table->foreign('rol_id')->references('id')->on('roles');
         });
     }
 
@@ -32,6 +31,6 @@ class CreateCarrerasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('carreras');
+        Schema::dropIfExists('usuarios_roles');
     }
 }

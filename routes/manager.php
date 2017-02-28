@@ -3,6 +3,14 @@
 Route::group(['namespace'=>'Manager'], function (){
     Route::get('/', 'ManagerController@index')->name('manage.index');
 
+    Route::group(['prefix'=>'suscripciones'], function (){
+        Route::get('/', 'ManagerSuscripcionesController@index')->name('manage.suscripciones');
+        Route::get('crear', 'ManagerSuscripcionesController@crear')->name('suscripciones.crear');
+        Route::post('crear', 'ManagerSuscripcionesController@crearPost')->name('suscripciones.crear.post');
+        Route::get('editar/{suscripcionId}', 'ManagerSuscripcionesController@editar')->name('suscripciones.editar');
+        Route::post('editar/{suscripcionId}', 'ManagerSuscripcionesController@editarPost')->name('suscripcion.editar.post');
+    });
+
     Route::group(['prefix'=>'carreras'], function (){
         Route::get('/', 'ManagerCarrerasController@index')->name('manage.carreras');
         Route::get('crear', 'ManagerCarrerasController@crear')->name('carreras.crear');
@@ -19,10 +27,26 @@ Route::group(['namespace'=>'Manager'], function (){
         Route::post('editar/{cursoId}', 'ManagerCursosController@editarPost')->name('cursos.editar.post');
 
     });
+
+    // Lecciones
     Route::group(['prefix'=>'curso'], function (){
         Route::get('{cursoId}/lecciones', 'ManagerLeccionesController@index')->name('manage.curso.lecciones');
         Route::get('{cursoId}/lecciones/crear', 'ManagerLeccionesController@crear')->name('curso.lecciones.crear');
+        Route::post('{cursoId}/lecciones/crear', 'ManagerLeccionesController@crearPost')->name('lecciones.crear.post');
+
+        Route::get('administrar/contenido/leccion/{leccionId}', 'ManagerLeccionesController@contenido')->name('leccion.administrar.contenido');
+        Route::post('administrar/contenido/leccion/{leccionId}', 'ManagerLeccionesController@contenidoPost')->name('administrar.contenido.post');
     });
 
-    Route::get('usuarios', 'ManagerController@index')->name('manage.usuarios');
+    Route::group(['prefix'=>'usuarios'], function (){
+        Route::get('/', 'ManagerUsuariosController@index')->name('manage.usuarios');
+        Route::get('crear', 'ManagerUsuariosController@crear')->name('usuarios.crear');
+        Route::post('crear', 'ManagerUsuariosController@crearPost')->name('usuarios.crear.post');
+        Route::get('editar/{usuarioId}', 'ManagerUsuariosController@editar')->name('usuarios.editar');
+        Route::post('editar/{usuarioId}', 'ManagerUsuariosController@editarPost')->name('usuario.editar.post');
+    });
+
+    Route::group(['prefix'=>'activaciones'], function (){
+        Route::get('/', 'ManagerActivacionesController@index')->name('manage.activaciones');
+    });
 });

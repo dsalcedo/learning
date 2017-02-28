@@ -39,7 +39,7 @@
             {!! Form::select('publicado', ['0'=>'No','1'=>'Si'], null, ['class'=>'form-control']) !!}
         </div>
 
-        <button type="submit" class="btn btn-success">Publicar</button>
+        <button type="submit" class="btn btn-success">Guardar cambios</button>
         {!! Form::close() !!}
     </div>
 
