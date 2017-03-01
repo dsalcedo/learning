@@ -85,7 +85,9 @@
                     <i class="fa fa-minus-circle" aria-hidden="true"></i>
                      Lección #{{ $l->lugar }}
                 </div>
-                {{ $l->nombre }}
+                <a href="{{ route('webapp.curso.leccion', [$curso->clave, $l->lugar, $l->id]) }}">
+                    {{ $l->nombre }}
+                </a>
             </div>
         @endforeach
     </div>
