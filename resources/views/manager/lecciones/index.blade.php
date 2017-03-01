@@ -16,17 +16,22 @@
             <tr>
                 <th>#</th>
                 <th>Nombre</th>
+                <th>Contenido</th>
                 <th>Publicado</th>
-
             </tr>
             </thead>
             <tbody>
                 @foreach($curso->getLecciones as $l)
                 <tr>
-                    <td>{{ $l->lugar }}</td>
+                    <td>{{ $loop->iteration }}</td>
                     <td>
-                        <a href="">
+                        <a href="{{ route('curso.leccion.editar', $l->id) }}">
                             {{ $l->nombre }}
+                        </a>
+                    </td>
+                    <td class="text-center">
+                        <a href="{{ route('leccion.administrar.contenido', $l->id) }}" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Editar contenido">
+                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
                         </a>
                     </td>
                     <td>
@@ -34,16 +39,6 @@
                             <option value="1" {{ ($l->publicado) ? 'selected="selected"' : '' }}>Publicado</option>
                             <option value="0" {{ (!$l->publicado) ? 'selected="selected"' : '' }}>No publicado</option>
                         </select>
-                    </td>
-                    <td class="text-center">
-                        <a href="" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Editar titulo">
-                            <i class="fa fa-pencil-square" aria-hidden="true"></i>
-                        </a>
-                    </td>
-                    <td class="text-center">
-                        <a href="{{ route('leccion.administrar.contenido', $l->id) }}" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Editar contenido">
-                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                        </a>
                     </td>
                     <td class="text-center">
                         <a href="" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Eliminar lección">
@@ -70,7 +65,7 @@
                         <div class="row">
                             <div class="form-group col-md-2 col-sm-2 col-xs-3">
                                 {!! Form::label('lugar', 'Lugar') !!}
-                                {!! Form::text('items[1][lugar]', 1, ['class'=>'form-control', 'disabled']) !!}
+                                {!! Form::text('items[1][lugar]', $curso->getLecciones->count() + 1, ['class'=>'form-control', 'disabled']) !!}
                             </div>
                             <div class="form-group col-md-10 col-sm-10 col-xs-9">
                                 {!! Form::label('titulo', 'Titulo') !!}
@@ -90,7 +85,7 @@
 
 @section('js')
     <script>
-        var lugar = 1;
+        var lugar = {{ $curso->getLecciones->count() + 1}};
         $('#linkCursos').addClass('active');
         var container = $('#leccionesForm');
         var tpl = '<div id="item-<:indice:>" class="row"><div class="form-group col-md-2 col-sm-2 col-xs-3">' +
