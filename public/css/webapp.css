@@ -78,3 +78,13 @@ body {
 .carrera-nombre{
     font-size: 25px;
 }
+
+.btn-border-success{
+    color: #4cae4c;
+    border-color: #4cae4c;
+}
+.btn-border-success:hover,
+.btn-border-success:focus {
+    color: #469346;
+    border-color: #469346;
+}

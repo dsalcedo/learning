@@ -31,7 +31,8 @@ class ManagerLeccionesController extends Controller
             'items' => 'required|array'
         ]);
 
-        $i = 1;
+        $i = $curso->getLecciones->count() + 1;
+
         foreach ($this->req->get('items') as $item){
             $l = $i++;
             $curso->getLecciones()->create([
@@ -41,6 +42,26 @@ class ManagerLeccionesController extends Controller
         }
 
         return redirect()->route('manage.curso.lecciones', $curso->id);
+    }
+
+    public function editar($leccion)
+    {
+        $args = compact('leccion');
+        return view('manager.lecciones.editar', $args);
+    }
+
+    public function editarPost($leccion)
+    {
+        $this->validate($this->req, [
+            'nombre' => 'required|max:255',
+            'publicado' => 'required'
+        ]);
+
+        $leccion->nombre = $this->req->get('nombre');
+        $leccion->publicado = $this->req->get('publicado');
+        $leccion->save();
+
+        return redirect()->back();
     }
 
     public function contenido($leccion)
