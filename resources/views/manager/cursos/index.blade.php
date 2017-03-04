@@ -17,6 +17,7 @@
                     <th>Descripción</th>
                     <th>Acceso</th>
                     <th>Estado</th>
+                    <th>Lecciones</th>
                 </tr>
             </thead>
             <tbody>
