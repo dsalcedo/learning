@@ -53,4 +53,9 @@ Route::group(['namespace'=>'Manager'], function (){
     Route::group(['prefix'=>'activaciones'], function (){
         Route::get('/', 'ManagerActivacionesController@index')->name('manage.activaciones');
     });
+
+    Route::group(['prefix'=>'multimedia'], function (){
+        Route::get('/', 'ManagerMultimediaController@index')->name('manage.multimedia');
+        Route::post('upload', 'ManagerMultimediaController@upload')->name('multimedia.upload');
+    });
 });

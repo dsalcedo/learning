@@ -56,8 +56,9 @@
                 </ul>
             </div>
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                {!! $leccion->getContenido->contenido !!}
-
+                <div style="font-size: 16px;">
+                    {!! $leccion->getContenido->contenido !!}
+                </div>
                 <div class="col-md-12 text-center" style="margin-top: 20px; margin-bottom: 20px;">
                     <a href="" class="btn btn-border-success">
                         Marcar como leido

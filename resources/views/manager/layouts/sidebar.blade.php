@@ -8,6 +8,7 @@
     </ul>
 
     <ul class="nav nav-sidebar">
+        <li id="linkMultimedia"><a href="{{ route('manage.multimedia') }}">Multimedia</a></li>
         <li id="linkActivaciones"><a href="{{ route('manage.activaciones') }}">Activaciones</a></li>
         <li id="linkSistema"><a href="{{ route('manage.usuarios') }}">Roles del sistema</a></li>
     </ul>

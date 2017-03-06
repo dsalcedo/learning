@@ -2,6 +2,10 @@
 
 @section('titulo', 'Cursos > Editar')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/spectrum.css') }}">
+@endsection
+
 @section('content')
 
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -27,6 +31,10 @@
             {!! Form::text('insignia', null, ['class'=>'form-control']) !!}
         </div>
         <div class="form-group">
+            {!! Form::label('color', 'Color de fondo') !!} <br>
+            {!! Form::text('color', null,['class'=>'form-control', 'id'=>'color']) !!}
+        </div>
+        <div class="form-group">
             {!! Form::label('cover', 'Cover') !!}
             {!! Form::text('cover', null, ['class'=>'form-control']) !!}
         </div>
@@ -46,7 +54,11 @@
 @endsection
 
 @section('js')
+    <script src="{{ asset('js/spectrum.js') }}"></script>
     <script>
         $('#linkCursos').addClass('active');
+        $("#color").spectrum({
+            preferredFormat: "hex"
+        });
     </script>
 @endsection

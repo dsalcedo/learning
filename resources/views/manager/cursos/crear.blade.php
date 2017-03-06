@@ -1,6 +1,10 @@
 @extends('manager.layouts.app')
 
-@section('titulo', 'Cursos > Crear')
+@section('titulo', 'Curso > Crear')
+
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/spectrum.css') }}">
+@endsection
 
 @section('content')
 
@@ -27,6 +31,10 @@
             {!! Form::text('insignia', null, ['class'=>'form-control']) !!}
         </div>
         <div class="form-group">
+            {!! Form::label('color', 'Color de fondo') !!} <br>
+            {!! Form::text('color', null,['class'=>'form-control', 'id'=>'color']) !!}
+        </div>
+        <div class="form-group">
             {!! Form::label('cover', 'Cover') !!}
             {!! Form::text('cover', null, ['class'=>'form-control']) !!}
         </div>
@@ -46,7 +54,11 @@
 @endsection
 
 @section('js')
+    <script src="{{ asset('js/spectrum.js') }}"></script>
     <script>
         $('#linkCursos').addClass('active');
+        $("#color").spectrum({
+            preferredFormat: "hex"
+        });
     </script>
 @endsection

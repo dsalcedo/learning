@@ -13,7 +13,7 @@
             text-shadow: 2px 1px 0px rgba(150, 150, 150, 1);
         }
         .curso-cover{
-            background: url({{ $curso->cover}}) no-repeat center center;
+            background: #4f5b93 url('{{ asset("test/cover.png") }}') no-repeat center center;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -108,7 +108,6 @@
             top: -17px;
             left: 0;
         }
-
         .timeline-milestone {
             border-left: 2px solid #00637d;
             margin: 0 0 0 20px;
@@ -230,20 +229,16 @@
     <div class="container container-curso">
 
         <ul class="timeline">
-            @foreach($curso->getLeccionesActivas() as $l)
-                <li class="timeline-milestone is-future {{ ($loop->last) ? 'timeline-end':'' }}">
-                    <div class="timeline-action is-expandable">
-                        <h2 class="title" style="color: #fff;">
+            {{--@foreach($curso->getLeccionesActivas() as $l)--}}
+                {{--<li class="timeline-milestone is-future {{ ($loop->last) ? 'timeline-end':'' }}">--}}
+                    {{--<div class="timeline-action is-expandable">--}}
+                        {{--<h2 class="title" style="color: #fff;">--}}
 
-                            {{ $loop->iteration. '.- '. $l->nombre }}
-                        </h2>
-                        {{--<span class="date">Fourth quarter 2013</span>--}}
-                        {{--<div class="content">--}}
-                            {{--dasdasd--}}
-                        {{--</div>--}}
-                    </div>
-                </li>
-            @endforeach
+                            {{--{{ $loop->iteration. '.- '. $l->nombre }}--}}
+                        {{--</h2>--}}
+                    {{--</div>--}}
+                {{--</li>--}}
+            {{--@endforeach--}}
             {{--<li class="timeline-milestone is-completed timeline-start">--}}
                 {{--<div class="timeline-action">--}}
                     {{--<h2 class="title">Begin</h2>--}}
@@ -304,40 +299,35 @@
 
 @section('js')
     <script>
-        $(document).ready(function() {
-            $timelineExpandableTitle = $('.timeline-action.is-expandable .title');
-
-            $($timelineExpandableTitle).attr('tabindex', '0');
-
-            // Give timelines ID's
-            $('.timeline').each(function(i, $timeline) {
-                var $timelineActions = $($timeline).find('.timeline-action.is-expandable');
-
-                $($timelineActions).each(function(j, $timelineAction) {
-                    var $milestoneContent = $($timelineAction).find('.content');
-
-                    $($milestoneContent).attr('id', 'timeline-' + i + '-milestone-content-' + j).attr('role', 'region');
-                    $($milestoneContent).attr('aria-expanded', $($timelineAction).hasClass('expanded'));
-
-                    $($timelineAction).find('.title').attr('aria-controls', 'timeline-' + i + '-milestone-content-' + j);
-                });
-            });
-
-//            $($timelineExpandableTitle).click(function() {
-//                $(this).parent().toggleClass('is-expanded');
-//                $(this).siblings('.content').attr('aria-expanded', $(this).parent().hasClass('is-expanded'));
+//        $(document).ready(function() {
+//            $timelineExpandableTitle = $('.timeline-action.is-expandable .title');
+//
+//            $($timelineExpandableTitle).attr('tabindex', '0');
+//
+//            // Give timelines ID's
+//            $('.timeline').each(function(i, $timeline) {
+//                var $timelineActions = $($timeline).find('.timeline-action.is-expandable');
+//
+//                $($timelineActions).each(function(j, $timelineAction) {
+//                    var $milestoneContent = $($timelineAction).find('.content');
+//
+//                    $($milestoneContent).attr('id', 'timeline-' + i + '-milestone-content-' + j).attr('role', 'region');
+//                    $($milestoneContent).attr('aria-expanded', $($timelineAction).hasClass('expanded'));
+//
+//                    $($timelineAction).find('.title').attr('aria-controls', 'timeline-' + i + '-milestone-content-' + j);
+//                });
 //            });
-
-            // Expand or navigate back and forth between sections
-            $($timelineExpandableTitle).keyup(function(e) {
-                if (e.which == 13){ //Enter key pressed
-                    $(this).click();
-                } else if (e.which == 37 ||e.which == 38) { // Left or Up
-                    $(this).closest('.timeline-milestone').prev('.timeline-milestone').find('.timeline-action .title').focus();
-                } else if (e.which == 39 ||e.which == 40) { // Right or Down
-                    $(this).closest('.timeline-milestone').next('.timeline-milestone').find('.timeline-action .title').focus();
-                }
-            });
-        });
+//
+//            // Expand or navigate back and forth between sections
+//            $($timelineExpandableTitle).keyup(function(e) {
+//                if (e.which == 13){ //Enter key pressed
+//                    $(this).click();
+//                } else if (e.which == 37 ||e.which == 38) { // Left or Up
+//                    $(this).closest('.timeline-milestone').prev('.timeline-milestone').find('.timeline-action .title').focus();
+//                } else if (e.which == 39 ||e.which == 40) { // Right or Down
+//                    $(this).closest('.timeline-milestone').next('.timeline-milestone').find('.timeline-action .title').focus();
+//                }
+//            });
+//        });
     </script>
 @endsection
