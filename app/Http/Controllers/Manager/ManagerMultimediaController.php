@@ -15,7 +15,9 @@ class ManagerMultimediaController extends Controller
 
     public function index()
     {
-        return view('manager.multimedia.index');
+        $multimedios = Multimedios::simplePaginate(15);
+        $args = compact('multimedios');
+        return view('manager.multimedia.index', $args);
     }
 
     public function filesizeFormatted($size)

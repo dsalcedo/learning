@@ -42,7 +42,7 @@
                                 <i class="fa fa-star" aria-hidden="true"></i>
                             </span>
                             @endif
-                            <img src="{{ $curso->insignia }}" class="img-circle insignia-mini">
+                            <img src="{{ asset($curso->getInsignia->getLink()) }}" class="img-circle insignia-mini">
                             <span class="curso-nombre">
                                 {{ $curso->nombre }}
                             </span>

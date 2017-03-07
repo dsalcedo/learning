@@ -4,6 +4,19 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('libs/upload-preview/uploadPreview.css') }}">
+    <style>
+        .thumb{
+            width: 150px;
+            height: 100px;
+            background-color: #fafafa;
+            display: block;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .vmedio{
+            vertical-align: middle!important;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -34,7 +47,37 @@
             {!! Form::close() !!}
         </div>
         <div class="col-md-9">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores atque commodi consequatur cum cumque ea eveniet excepturi, facere ipsam iste libero magni natus nihil nostrum optio repellat rerum suscipit voluptatum?
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width: 160px;">Imagen</th>
+                            <th>Nombre</th>
+                            <th>Url</th>
+                            <th>Tipo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($multimedios as $archivo)
+                        <tr>
+                            <td class="vmedio">
+                                <div class="thumb" style="background: url({{ asset($archivo->getLink()) }}) no-repeat center center;  -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;"></div>
+                            </td>
+                            <td class="vmedio"><strong>{{ $archivo->nombre }}</strong></td>
+                            <td class="vmedio">
+                                <input type="text" class="form-control" value="{{ $archivo->getLink() }}" style="width: 400px;">
+                            </td>
+                            <td class="vmedio">{{ $archivo->tipo }}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-md-12 text-center">
+                {{ $multimedios->links() }}
+            </div>
+
         </div>
 
     </div>

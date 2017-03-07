@@ -12,4 +12,9 @@ class Multimedios extends Model
         'nombre',
         'media'
     ];
+
+    public function getLink()
+    {
+        return '/multimedia/'.$this->media;
+    }
 }
