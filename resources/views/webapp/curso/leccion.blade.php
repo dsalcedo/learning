@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="{{ asset('libs/highlight/rainbow.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/leccion.css') }}">
     <style>
-
         ul.lecciones-lista{
             padding: 0;
             list-style-type: none;
@@ -59,7 +58,6 @@
         <div class="row">
             <div class="col-sm-3 col-md-2 sidebar">
                 <div class="row row-sidebar text-center">
-                    <img src="{{ asset($leccion->getCurso->getInsignia->getLink()) }}" class="insignia-sidebar">
                     {{ $leccion->getCurso->nombre }}
                 </div>
                 <ul class="nav nav-sidebar">
@@ -74,8 +72,15 @@
                     @endforeach
                 </ul>
             </div>
+
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <div class="row mensaje-notificacion">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab consequuntur distinctio dolor doloribus ea hic maxime molestias nam officia provident quis, quod reiciendis saepe sunt voluptatem! Cum enim iste sapiente!
+                </div>
                 <div style="font-size: 16px;">
+                    <h2>
+                        {{ $leccion->lugar.'.- '.$leccion->nombre }}
+                    </h2>
                     {!! $leccion->getContenido->contenido !!}
                 </div>
                 <div class="col-md-12 text-center" style="margin-top: 20px; margin-bottom: 20px;">
@@ -105,5 +110,4 @@
             });
         });
     </script>
-
 @endsection

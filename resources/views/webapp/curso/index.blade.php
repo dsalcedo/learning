@@ -5,30 +5,28 @@
 @section('css')
     <style>
         body {
-            padding-top: 52px!important;
+            padding-top: 51px!important;
         }
-
         .titulo-curso {
             color: #fff;
             text-shadow: 2px 1px 0px rgba(150, 150, 150, 1);
         }
-        .curso-cover{
+        .curso-cover {
             background: #4f5b93 url('{{ asset("test/cover.png") }}') no-repeat center center;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
         }
-
         @media (min-width: 768px) {
-            .container-curso{
+            .container-curso {
                 margin-top: -100px;
                 background-color: #fff;
                 border-radius: 3px;
                 padding: 40px 50px!important;
                 max-width: 800px;
             }
-            .curso-cover{
+            .curso-cover {
                 min-height: 300px;
             }
         }
@@ -72,6 +70,11 @@
             align-items: center;
             justify-content: center;
         }
+        @media (max-width: 767px) {
+            .jumbotron{
+                margin-bottom: 20px;
+            }
+        }
     </style>
 
     <div class="jumbotron curso-cover text-center v-middle">
@@ -79,6 +82,10 @@
     </div>
 
     <div class="container container-curso">
+
+        <div class="row curso-descripcion">
+            {{ $curso->descripcion }}
+        </div>
 
         @foreach($curso->getLeccionesActivas() as $l)
             <div class="panel-card">

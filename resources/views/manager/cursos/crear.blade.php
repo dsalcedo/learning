@@ -17,6 +17,17 @@
 @section('content')
 
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         {!! Form::open(['route'=>'cursos.crear.post']) !!}
         <div class="form-group">
             {!! Form::label('clave', 'Clave') !!}

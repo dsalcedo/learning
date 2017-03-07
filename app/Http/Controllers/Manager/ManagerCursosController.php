@@ -44,7 +44,6 @@ class ManagerCursosController extends Controller
             "publicado" => 'min:1',
         ]);
 
-
         Curso::create($this->req->all());
 
         return redirect()->route('manage.cursos');

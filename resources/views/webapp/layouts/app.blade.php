@@ -14,6 +14,7 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/webapp.css') }}" rel="stylesheet">
+
     @yield('css')
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -29,7 +30,7 @@
 <body>
 
 <!-- Static navbar -->
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -38,30 +39,24 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Project name</a>
+            <a class="navbar-brand" href="{{ route('webapp.index') }}">
+                Project name
+            </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+            <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-user-circle-o" aria-hidden="true"></i> Cuenta<span class="caret"></span>
+                    </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
+                        <li><a href="{{ route('webapp.perfil') }}">Mi perfil</a></li>
+                        <li><a href="{{ route('webapp.suscripcion') }}">Mi suscripción</a></li>
+                        <li><a href="{{ route('webapp.compras') }}">Mis compras</a></li>
                         <li role="separator" class="divider"></li>
-                        <li class="dropdown-header">Nav header</li>
-                        <li><a href="#">Separated link</a></li>
-                        <li><a href="#">One more separated link</a></li>
+                        <li><a href="#"><i class="fa fa-sign-out" aria-hidden="true"></i> Salir</a></li>
                     </ul>
                 </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="../navbar/">Default</a></li>
-                <li class="active"><a href="./">Static top <span class="sr-only">(current)</span></a></li>
-                <li><a href="../navbar-fixed-top/">Fixed top</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>

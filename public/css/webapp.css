@@ -88,3 +88,35 @@ body {
     color: #469346;
     border-color: #469346;
 }
+.mensaje-notificacion {
+    margin-right: -40px;
+    margin-left: -40px;
+    margin-top: -20px;
+    background-color: #41b0b5;
+    border-bottom: 4px solid #459ea2;
+    padding: 18px 40px;
+    color: #fff;
+}
+
+.curso-descripcion {
+    margin-bottom: 20px;
+    margin-top: -20px;
+    margin-right: -25px;
+    margin-left: -25px;
+    background-color: #4f5b93;
+    border-bottom: 4px solid #3f4872;
+    padding: 18px 40px;
+    color: #fff;
+}
+
+/*
+*
+* NAVBAR
+*/
+.navbar-default{
+    background-color: #fff;
+}
+.nav-sidebar > .active > a, .nav-sidebar > .active > a:hover, .nav-sidebar > .active > a:focus {
+    color: #fff;
+    background-color: #41b0b5!important;
+}
