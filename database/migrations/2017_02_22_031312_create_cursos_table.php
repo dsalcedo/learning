@@ -19,13 +19,15 @@ class CreateCursosTable extends Migration
             $table->string('clave');
             $table->string('nombre');
             $table->string('descripcion');
-            $table->string('insignia')->nullable();
+            $table->integer('insignia_id')->unsigned();
+            $table->string('color')->nullable();
             $table->string('cover')->nullable();
             $table->boolean('gratuito')->default(false);
             $table->boolean('publicado')->default(false);
             $table->timestamps();
 
             $table->foreign('carrera_id')->references('id')->on('carreras');
+            $table->foreign('insignia_id')->references('id')->on('multimedios');
         });
     }
 

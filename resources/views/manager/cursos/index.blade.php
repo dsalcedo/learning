@@ -12,6 +12,7 @@
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
+                    <th style="width: 36px;"></th>
                     <th>Nombre</th>
                     <th>Carrera</th>
                     <th>Descripción</th>
@@ -23,6 +24,11 @@
             <tbody>
                 @foreach($cursos as $c)
                 <tr>
+                    <td class="text-center">
+                        <a href="{{ route('manage.cursos.editar', $c->id) }}">
+                            <img src="{{ asset($c->getInsignia->getLink()) }}" style="width: 40px; height: 40px;">
+                        </a>
+                    </td>
                     <td>
                         <a href="{{ route('manage.cursos.editar', $c->id) }}">
                             {{ $c->nombre }}

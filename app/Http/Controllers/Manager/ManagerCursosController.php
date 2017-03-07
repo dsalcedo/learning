@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Manager;
 
 use App\Modelos\Cursos\Carreras;
 use App\Modelos\Cursos\Curso;
+use App\Modelos\Sistema\Multimedios;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -24,7 +25,8 @@ class ManagerCursosController extends Controller
     public function crear()
     {
         $carreras = Carreras::pluck('nombre', 'id');
-        $args = compact('cursos', 'carreras');
+        $insigniasJson = $this->getInsigniasJson();
+        $args = compact('cursos', 'carreras', 'insigniasJson');
 
         return view('manager.cursos.crear', $args);
     }
@@ -36,11 +38,12 @@ class ManagerCursosController extends Controller
             "nombre" => 'min:1|max:255',
             "carrera_id" => 'min:1|max:255',
             "descripcion" =>  'min:1|max:255',
-            "insignia" => 'min:1|max:255',
+            "insignia_id" => 'min:1|max:255',
             "cover" => 'min:1|max:255',
             "gratuito" => 'min:1',
             "publicado" => 'min:1',
         ]);
+
 
         Curso::create($this->req->all());
 
@@ -50,7 +53,8 @@ class ManagerCursosController extends Controller
     public function editar($curso)
     {
         $carreras = Carreras::pluck('nombre', 'id');
-        $args = compact('curso', 'carreras');
+        $insigniasJson = $this->getInsigniasJson();
+        $args = compact('curso', 'carreras', 'insigniasJson');
 
         return view('manager.cursos.editar', $args);
     }
@@ -62,7 +66,7 @@ class ManagerCursosController extends Controller
             "nombre" => 'min:1|max:255',
             "carrera_id" => 'min:1|max:255',
             "descripcion" => 'min:1|max:255',
-            "insignia" => 'min:1|max:255',
+            "insignia_id" => 'min:1|max:255',
             "cover" => 'min:1|max:255',
             "gratuito" => 'min:1',
             "publicado" => 'min:1',
@@ -72,7 +76,7 @@ class ManagerCursosController extends Controller
         $curso->nombre = $this->req->get('nombre');
         $curso->carrera_id = $this->req->get('carrera_id');
         $curso->descripcion = $this->req->get('descripcion');
-        $curso->insignia = $this->req->get('insignia');
+        $curso->insignia_id = $this->req->get('insignia_id');
         $curso->cover = $this->req->get('cover');
         $curso->gratuito = $this->req->get('gratuito');
         $curso->publicado = $this->req->get('publicado');
@@ -80,5 +84,10 @@ class ManagerCursosController extends Controller
         $curso->save();
 
         return redirect()->route('manage.cursos');
+    }
+
+    public function getInsigniasJson()
+    {
+        return Multimedios::where('tipo', 'insignia')->get(['id','media', 'nombre'])->toJson();
     }
 }

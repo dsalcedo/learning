@@ -12,8 +12,9 @@ class Curso extends Model
         'clave',
         'nombre',
         'descripcion',
+        'color',
         'cover',
-        'insignia',
+        'insignia_id',
         'gratuito',
         'publicado'
     ];
@@ -21,6 +22,11 @@ class Curso extends Model
     public function getCarrera()
     {
         return $this->hasOne('App\Modelos\Cursos\Carreras', 'id', 'carrera_id');
+    }
+
+    public function getInsignia()
+    {
+        return $this->hasOne('App\Modelos\Sistema\Multimedios', 'id', 'insignia_id');
     }
 
     public function getLecciones()

@@ -23,7 +23,7 @@
                 {!! Form::textarea('descripcion', null, ['class'=>'form-control', 'rows'=>3]) !!}
             </div>
             <div class="form-group">
-                {!! Form::label('color', 'Color') !!}
+                {!! Form::label('color', 'Color de fondo') !!} <br>
                 {!! Form::text('color', null,['class'=>'form-control', 'id'=>'color']) !!}
             </div>
             <div class="form-group">

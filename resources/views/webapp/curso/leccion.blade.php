@@ -35,6 +35,21 @@
         pre code {
             white-space: pre;
         }
+        .row-sidebar{
+            margin-right: -20px;
+            margin-left: -20px;
+            color: {{ $leccion->getCurso->color }};
+            padding: 10px 20px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .insignia-sidebar{
+            max-width: 80px;
+            display: block;
+            margin-right: auto;
+            margin-left: auto;
+            margin-bottom: 30px;
+        }
     </style>
 @endsection
 
@@ -43,6 +58,10 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-3 col-md-2 sidebar">
+                <div class="row row-sidebar text-center">
+                    <img src="{{ asset($leccion->getCurso->getInsignia->getLink()) }}" class="insignia-sidebar">
+                    {{ $leccion->getCurso->nombre }}
+                </div>
                 <ul class="nav nav-sidebar">
                     @foreach($leccion->getCurso->getLeccionesActivas() as $l)
                         <li id="uid-{{ $l->id }}">
@@ -56,8 +75,9 @@
                 </ul>
             </div>
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                {!! $leccion->getContenido->contenido !!}
-
+                <div style="font-size: 16px;">
+                    {!! $leccion->getContenido->contenido !!}
+                </div>
                 <div class="col-md-12 text-center" style="margin-top: 20px; margin-bottom: 20px;">
                     <a href="" class="btn btn-border-success">
                         Marcar como leido
