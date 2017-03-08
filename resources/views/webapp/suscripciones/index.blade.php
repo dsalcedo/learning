@@ -41,6 +41,7 @@
             margin: 20px 0;
             text-align: center;
             color: #333;
+            padding-top: 10px;
         }
 
         .option:hover .hided-icon {
@@ -126,11 +127,78 @@
 @endsection
 
 @section('content')
+
+    <style>
+        .paymentWrap {
+            padding: 0px 10px;
+            margin-bottom: 30px;
+        }
+
+        .paymentWrap .paymentBtnGroup {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .paymentWrap .paymentBtnGroup .paymentMethod {
+            width: 42px;
+            height: 30px;
+            padding: 0px;
+            box-shadow: none;
+            position: relative;
+        }
+
+        .paymentWrap .paymentBtnGroup .paymentMethod.active {
+            outline: none !important;
+        }
+
+        .paymentWrap .paymentBtnGroup .paymentMethod.active .method {
+            border-color: #0fb112;
+            outline: none !important;
+        }
+
+        .paymentWrap .paymentBtnGroup .paymentMethod .method {
+            position: absolute;
+            right: 3px;
+            top: 3px;
+            bottom: 3px;
+            left: 3px;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            border: 1px solid transparent;
+            border-radius: 100px;
+            transition: all 0.5s;
+        }
+
+        .paymentWrap .paymentBtnGroup .paymentMethod .method.visa {
+            background-image: url("{{ asset('images/pagos/visa.png') }}")
+        }
+
+        .paymentWrap .paymentBtnGroup .paymentMethod .method.master-card {
+            background-image: url("{{ asset('images/pagos/mastercard.png') }}")
+        }
+
+
+        .paymentWrap .paymentBtnGroup .paymentMethod .method.vishwa {
+            background-image: url("{{ asset('images/pagos/oxxo.png') }}")
+        }
+
+        .paymentWrap .paymentBtnGroup .paymentMethod .method.ez-cash {
+            background-image: url("http://www.busbooking.lk/img/carousel/BusBooking.lk_ezCash_offer.png");
+        }
+
+
+        .paymentWrap .paymentBtnGroup .paymentMethod .method:hover {
+            border-color: #4cd264;
+            outline: none;
+        }
+    </style>
     <div class="container">
 
         @foreach($suscripciones as $s)
             <div class="col-sm-3 col-md-3">
                 <div class="option">
+                    {!! Form::open(['route'=>['comprar.suscripcion', $s->id, $s->clave]] ) !!}
                     <div class="option-title">
                         <h3>{{ $s->nombre }}</h3>
                         <span>Duración de {{ $s->duracion }} días</span>
@@ -140,19 +208,41 @@
                         <span class="period">MXN</span>
                     </div>
                     <div class="option-list">
-                        <ul class="item-list">
-                            <li><strong>Acceso a todos los cursos</strong></li>
-                            <li>Entrada <strong>preferencial</strong> a nuestros eventos</li>
-                            <li>Exámenes al final de cada curso y <strong>diploma</strong> por cada carrera</li>
+                        <ul class="item-list" style="margin-bottom: 0px;">
+                            <li>Acceso a todos los cursos</li>
+                            <li>Entrada preferencial a nuestros eventos</li>
+                            <li>Exámenes al final de cada curso y diploma por cada carrera</li>
                             <li>
                                 <div class="qr" id="uid-{{$s->id}}" data-link="{{ route('comprar.suscripcion', [$s->id, $s->clave])}}"></div>
                             </li>
                         </ul>
-                        <a href="{{ route('comprar.suscripcion', [$s->id, $s->clave])}}" class="btn btn-success">
+
+
+                        <div class="paymentWrap">
+                            <h4 class="text-center text-uppercase">Método de pago</h4>
+
+                            <div class="btn-group paymentBtnGroup btn-group-justified" data-toggle="buttons">
+                                <label class="btn paymentMethod active">
+                                    <span class="method visa"></span>
+                                    <input type="radio" name="metodo" value="visa"checked>
+                                </label>
+                                <label class="btn paymentMethod">
+                                    <span class="method master-card"></span>
+                                    <input type="radio" name="metodo" value="mastercard">
+                                </label>
+                                <label class="btn paymentMethod">
+                                    <span class="method vishwa"></span>
+                                    <input type="radio" name="metodo" value="oxxo">
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-success">
                             Escoger
-                        </a>
+                        </button>
                     </div>
                 </div>
+                {!! Form::close() !!}
             </div>
         @endforeach
     </div>

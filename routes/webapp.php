@@ -12,7 +12,9 @@ Route::group(['namespace'=>'Webapp'], function (){
     Route::post('perfil', 'PerfilController@updatePerfil')->name('perfil.update');
 
     Route::get('suscripcion', 'SuscripcionesController@index')->name('webapp.suscripcion');
-    Route::get('suscripcion/{suscripcionId}/{strClave}', 'SuscripcionesController@index')->name('comprar.suscripcion');
+    Route::post('comprar/suscripcion/{suscripcionId}/{strClave}', 'SuscripcionesController@comprarSuscripcion')->name('comprar.suscripcion');
+    Route::get('comprar/suscripcion/{suscripcionId}/{metodo?}', 'SuscripcionesController@comprarSuscripcion')->name('get.comprar.suscripcion');
+    Route::post('procesar-compra/{suscripcionId}/{metodo}', 'SuscripcionesController@procesarCompra')->name('procesar.compra');
 
     Route::get('compras', 'PerfilController@index')->name('webapp.compras');
 });

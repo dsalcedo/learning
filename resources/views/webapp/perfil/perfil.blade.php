@@ -4,10 +4,9 @@
 
 @section('content')
 
-    <div class="container" style="max-width: 800px; background-color: #fafafa;">
-        <h2>Mi perfil</h2>
+    <div class="container" style="max-width: 800px; background-color: #fff;">
 
-        @if (session('success'))
+        @if(session('success'))
             <div class="alert alert-success">
                 <strong>{{ session('success') }}</strong>
             </div>
@@ -31,7 +30,7 @@
                 {{ Form::password('password', ['class'=>'form-control']) }}
             </div>
             <div class="col-md-12 text-center">
-                <input type="submit" class="btn btn-success" value="Actualizar información">
+                <input type="submit" class="btn btn-success" value="Actualizar mis datos">
             </div>
         {{ Form::close() }}
     </div>
