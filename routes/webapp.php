@@ -13,8 +13,10 @@ Route::group(['namespace'=>'Webapp'], function (){
 
     Route::get('suscripcion', 'SuscripcionesController@index')->name('webapp.suscripcion');
     Route::post('comprar/suscripcion/{suscripcionId}/{strClave}', 'SuscripcionesController@comprarSuscripcion')->name('comprar.suscripcion');
-    Route::get('comprar/suscripcion/{suscripcionId}/{metodo?}', 'SuscripcionesController@comprarSuscripcion')->name('get.comprar.suscripcion');
+    Route::get('comprar/suscripcion/{suscripcionId}/{strClave}/{metodo?}', 'SuscripcionesController@comprarSuscripcionGet')->name('get.comprar.suscripcion');
     Route::post('procesar-compra/{suscripcionId}/{metodo}', 'SuscripcionesController@procesarCompra')->name('procesar.compra');
 
-    Route::get('compras', 'PerfilController@index')->name('webapp.compras');
+    Route::get('compras', 'PerfilController@index')->name('webapp.compras'); // funciona ??
+
+    Route::get('compra/recibo/oxxo-pay/{oxxoId}', 'ReciboOxxoPayController@index')->name('webapp.recibo.oxxo');
 });

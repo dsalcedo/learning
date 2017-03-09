@@ -8,6 +8,11 @@ class MetodoTarjetas extends Model
 {
     protected $table = 'metodo_tarjetas';
     protected $fillable = [
-        ''
+        'usuario_id',
+        'orden_id',
+        'tarjeta_digitos',
+        'brand',
+        'issuer',
+        'type'
     ];
 }

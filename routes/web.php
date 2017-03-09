@@ -12,3 +12,6 @@
 */
 
 Route::get('/', 'Website\WebsiteController@index')->name('website.index');
+Route::get('registro', 'Website\RegistroController@index')->name('website.registro');
+Route::post('registro', 'Auth\RegisterController@register')->name('registro.post');
+Route::get('acceso', 'Website\WebsiteController@index')->name('website.acceso');

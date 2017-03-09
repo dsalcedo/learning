@@ -60,13 +60,23 @@
             background-size: 100% auto;
         }
 
+        @media(max-width: 767px){
+            .procesandoPago{
+                padding-top: 50%;
+            }
 
+            .procesandoPago h1{
+                padding-left: 40px;
+                padding-right: 40px;
+            }
+
+        }
     </style>
 @endsection
 
 @section('content')
     <div class="procesandoPago hide text-center">
-        <h1>Estamos realizando el cargo a tu tarjeta</h1>
+        <h1>{{ ($tpl == 'tarjeta' ? 'Estamos realizando el cargo a tu tarjeta' : 'Estamos generando tu recibo de pago OXXO Pay') }}</h1>
         <h3>Por favor no cierres esta ventana</h3>
     </div>
 <div class="container container-pago">
@@ -109,12 +119,17 @@
 
         <div class="form-group">
             {!! Form::label('nombre', 'Nombre', ['class'=>'control-label']) !!}
-            {!! Form::text('nombre',null,['class'=>'form-control']) !!}
+            {!! Form::text('nombre', $usuario->getFullname(),['class'=>'form-control']) !!}
         </div>
         <div class="form-group">
             {!! Form::label('email', 'Correo electrónico', ['class'=>'control-label']) !!}
-            {!! Form::text('email',null,['class'=>'form-control']) !!}
+            {!! Form::text('email', $usuario->email,['class'=>'form-control']) !!}
         </div>
+        <div class="form-group">
+            {!! Form::label('telefono', 'Teléfono de contacto (10 dígitos)', ['class'=>'control-label']) !!}
+            {!! Form::text('telefono', null,['class'=>'form-control']) !!}
+        </div>
+        <p class="help-text">Esta información nos ayudará a llevar un control anti-fraude y evitar realizarte otro tipo de cargo que no sea esta suscripción.</p>
 
     </div>
 
@@ -188,6 +203,16 @@
             <div class="col-md-12 text-center">
                 <input id="pagoTarjeta" type="submit" class="btn btn-success" value="Realizar el pago">
             </div>
+        @else
+            <p style="font-family: 'Roboto', sans-serif; font-size:17px;font-weight: 200;">
+                Al confirmar tu método de pago en "OXXO" tendrás <strong>15 días como máximo</strong> para realizar tu pago.
+            </p>
+            <p style="font-family: 'Roboto', sans-serif; font-size:17px;font-weight: 200;">
+                Una vez hecho el pago, OXXO <strong>INMEDIATAMENTE</strong> nos confirmará tu pago y tu <strong>suscripción será activada</strong>.
+            </p>
+            <div class="col-md-12 text-center" style="margin-top: 30px;">
+                <input id="pagoOxxo" type="submit" class="btn btn-success" value="Realizar mi pago en OXXO">
+            </div>
         @endif
     </div>
 
@@ -224,33 +249,48 @@
     <script>
         Conekta.setPublishableKey("key_FcyfqGBXDNGsz1u4Vd5uNow");
         Conekta.setLanguage("es");
-
-        var successHandler = function(token) {
-            /* token keys: id, livemode, used, object */
-
-            var $form = $('form');
-            var card_token = token.id;
-            // Insert the token_id into the form
-            $form.append($('<input type="hidden" name="card_token" />').val(card_token));
-            $form.submit();
-        };
-
-        var errorHandler = function(response) {
-            $('.procesandoPago').addClass('hide');
-            /* err keys: object, type, message, message_to_purchaser, param, code */
-            $('.msgConekta').empty().text(response.message_to_purchaser);
-            $('#errores').modal('show');
-            $('#pagoTarjeta').prop('disabled', false);
-        };
-
-
-        $(document).on('click', '#pagoTarjeta', function (e) {
-
-            $('.procesandoPago').removeClass('hide');
-            $(this).prop('disabled', true);
-            Conekta.token.create($('form'), successHandler, errorHandler);
-
-            e.preventDefault();
-        });
     </script>
+
+    @if($tpl == 'tarjeta')
+        <script>
+            var successHandler = function(token) {
+                /* token keys: id, livemode, used, object */
+
+                var $form = $('form');
+                var card_token = token.id;
+                // Insert the token_id into the form
+                $form.append($('<input type="hidden" name="card_token" />').val(card_token));
+                $form.submit();
+            };
+
+            var errorHandler = function(response) {
+                $('.procesandoPago').addClass('hide');
+                /* err keys: object, type, message, message_to_purchaser, param, code */
+                $('.msgConekta').empty().text(response.message_to_purchaser);
+                $('#errores').modal('show');
+                $('#pagoTarjeta').prop('disabled', false);
+            };
+
+
+            $(document).on('click', '#pagoTarjeta', function (e) {
+
+                $('.procesandoPago').removeClass('hide');
+                $(this).prop('disabled', true);
+                Conekta.token.create($('form'), successHandler, errorHandler);
+
+                e.preventDefault();
+            });
+        </script>
+    @else
+        <script>
+            var $form = $('form');
+
+            $(document).on('click', '#pagoOxxo', function(){
+                $('.procesandoPago').removeClass('hide');
+                $(this).prop('disabled', true);
+                $form.submit();
+            });
+        </script>
+    @endif
+
 @endsection

@@ -47,4 +47,19 @@ class Usuario extends Authenticatable
     {
         return $this->belongsToMany('App\Modelos\Catalogo\Roles', 'usuarios_roles', 'usuario_id', 'rol_id')->withTimestamps();
     }
+
+    public function getConektaCustomer()
+    {
+        return $this->hasOne('App\Modelos\Usuario\Customers', 'usuario_id');
+    }
+
+    public function ordenes()
+    {
+        return $this->hasMany('App\Modelos\Usuario\UsuarioOrdenes', 'usuario_id', 'id');
+    }
+
+    public function suscripciones()
+    {
+        return $this->hasMany('App\Modelos\Usuario\UsuarioSuscripciones', 'usuario_id', 'id');
+    }
 }

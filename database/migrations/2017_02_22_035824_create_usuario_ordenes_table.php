@@ -21,9 +21,9 @@ class CreateUsuarioOrdenesTable extends Migration
             $table->smallInteger('monto')->unsigned();
             $table->string('uid_transaccion')->nullable();
             $table->enum('estado_interno', ['pendiente', 'rechazado', 'cancelado', 'pagado', 'rembolsado'])->default('pendiente');
-            $table->enum('metodo_pago', ['oxxo', 'tarjeta_debito', 'tarjeta_credito', 'spei', 'cortesia']);
+            $table->enum('metodo_pago', ['oxxo', 'tarjeta', 'spei', 'cortesia']);
             $table->enum('emisor', ['visa', 'master_card', 'american_express', 'spei', 'oxxo', 'cortesia']);
-            $table->enum('estado_pago', ['payment_pending', 'declined', 'expired', 'paid', 'refunded', 'partially_refunded', 'charged_back', 'pre_authorized', 'voided'])->nullable();
+            $table->enum('estado_pago', ['pending_payment','payment_pending', 'declined', 'expired', 'paid', 'refunded', 'partially_refunded', 'charged_back', 'pre_authorized', 'voided'])->nullable();
             $table->timestamp('paid_at')->nullable();
             $table->timestamps();
 
