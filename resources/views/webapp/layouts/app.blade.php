@@ -46,7 +46,10 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="{{ route('webapp.index') }}">Cursos</a>
+                    <a href="{{ route('webapp.index') }}">Carreras</a>
+                </li>
+                <li>
+                    <a href="{{ route('webapp.suscripcion') }}">Suscripciones</a>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -54,8 +57,12 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('webapp.perfil') }}">Mi perfil</a></li>
-                        <li><a href="{{ route('webapp.suscripcion') }}">Mi suscripción</a></li>
+                        <li><a href="#">Mi suscripción</a></li>
                         <li><a href="{{ route('webapp.compras') }}">Mis compras</a></li>
+                        <li><a href="{{ route('webapp.compras') }}" style="font-style: italic;">
+                                <i class="fa fa-gift" aria-hidden="true"></i>
+                                Redeem
+                            </a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="#"><i class="fa fa-sign-out" aria-hidden="true"></i> Salir</a></li>
                     </ul>

@@ -14,7 +14,8 @@ class LeccionController extends Controller
 
     public function index($claveCurso, $indice, $leccion)
     {
-        $args = compact('leccion');
+        $cursado = $this->req->user()->avances()->where('leccion_id', $leccion->id)->first();
+        $args = compact('leccion', 'cursado');
         return view('webapp.curso.leccion', $args);
     }
 }

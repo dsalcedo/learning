@@ -17,4 +17,20 @@ class CursoController extends Controller
         $args = compact('curso');
         return view('webapp.curso.index', $args);
     }
+
+    public function agregarAvance($leccion)
+    {
+        $usuario = $this->req->user();
+        $avance  = $usuario->avances()->where('leccion_id', $leccion->id)->first();
+
+        if(is_null($avance)){
+            $usuario->avances()->create([
+                'carrera_id' => $leccion->getCurso->carrera_id,
+                'curso_id'   => $leccion->curso_id,
+                'leccion_id' => $leccion->id
+            ]);
+        }
+
+        return redirect()->back();
+    }
 }

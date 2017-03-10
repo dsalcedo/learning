@@ -62,4 +62,10 @@ class Usuario extends Authenticatable
     {
         return $this->hasMany('App\Modelos\Usuario\UsuarioSuscripciones', 'usuario_id', 'id');
     }
+
+    public function avances()
+    {
+        return $this->hasMany('App\Modelos\Usuario\UsuarioAvances','usuario_id', 'id');
+    }
+
 }

@@ -84,9 +84,11 @@
                     {!! $leccion->getContenido->contenido !!}
                 </div>
                 <div class="col-md-12 text-center" style="margin-top: 20px; margin-bottom: 20px;">
-                    <a href="" class="btn btn-border-success">
-                        Marcar como leido
-                    </a>
+                    @if(is_null($cursado))
+                        <a href="{{ route('curso.agregar.avance', $leccion->id) }}" class="btn btn-border-success">
+                            Marcar como leido
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>

@@ -11,4 +11,9 @@ class WebsiteController extends Controller
     {
         return view('website.index');
     }
+
+    public function acceso()
+    {
+        return view('website.acceso');
+    }
 }

@@ -11,6 +11,9 @@
     @php
         $limite = $recibo->created_at->addDays(15);
     @endphp
+    <style>
+
+    </style>
 </head>
 <body>
 <div class="opps">
@@ -23,7 +26,7 @@
             <div class="opps-ammount">
                 <h3>Monto a pagar</h3>
                 <h2>$ {{ number_format($recibo->orden->monto, 2, '.', ',')  }} <sup>MXN</sup></h2>
-                <p>OXXO cobrará una comisión adicional al momento de realizar el pago.</p>
+                <p style="color: #eb655a;">OXXO cobrará una comisión adicional al momento de realizar el pago.</p>
             </div>
         </div>
         <div class="opps-reference">

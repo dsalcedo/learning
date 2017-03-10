@@ -2,6 +2,22 @@
 
 @section('titulo', 'Hackrhub')
 
+@section('css')
+    <style>
+        .examen{
+            background-color: #33b9b9;
+            color: #fff!important;
+            transition-duration: 1s;
+            text-transform: uppercase;
+
+        }
+        a.examen:hover,
+        a.examen:focus{
+            background-color: #00cc77;
+        }
+    </style>
+@endsection
+
 @section('content')
 
     <div class="container">
@@ -24,9 +40,12 @@
                     <p>{{ $carrera->descripcion }}</p>
                     <div class="row">
                         <div class="col-md-11">
+                            @php
+                                $a = $carrera->getAvanceInt($usuario);
+                            @endphp
                             <div class="progress">
-                                <span class="porcentaje-avance">0%</span>
-                                <div class="progress-bar bar-colorful" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 0%;">
+                                <span class="porcentaje-avance">{{ $a }}%</span>
+                                <div class="progress-bar bar-colorful" role="progressbar" aria-valuenow="{{ $a }}" aria-valuemin="0" aria-valuemax="100" style="min-width: {{ $a }}%;">
                                 </div>
                             </div>
                         </div>
@@ -48,6 +67,12 @@
                             </span>
                         </a>
                     @endforeach
+                    @if($a>=100)
+                            <a href="" class="list-group-item text-center examen">
+                                <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                 Tomar el examen de certificación
+                            </a>
+                    @endif
                 </div>
             </div>
         </div>

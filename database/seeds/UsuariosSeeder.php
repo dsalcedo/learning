@@ -16,7 +16,7 @@ class UsuariosSeeder extends Seeder
             'nombre' => 'J. Daniel',
             'apellidos' => 'Salcedo Sambrano',
             'email' => 'dsalcedo@outlook.com',
-            'password' => bcrypt('Google2007'),
+            'password' => 'Google2007',
             'activo' => true
         ]);
 
