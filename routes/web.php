@@ -16,3 +16,8 @@ Route::get('registro', 'Website\RegistroController@index')->name('website.regist
 Route::post('registro', 'Auth\RegisterController@register')->name('registro.post');
 Route::get('acceso', 'Website\WebsiteController@acceso')->name('website.acceso');
 Route::post('acceso', 'Auth\LoginController@login')->name('acceso.post');
+
+// WEBHOOKS & CALLBACKS
+Route::group(['prefix'=>'webhook', 'namespace'=>'Webhooks'], function(){
+    Route::any('conekta', 'ConektaWebhookController@index')->name('webhook.conekta');
+});

@@ -68,4 +68,9 @@ class Usuario extends Authenticatable
         return $this->hasMany('App\Modelos\Usuario\UsuarioAvances','usuario_id', 'id');
     }
 
+    public function getCursamiento()
+    {
+        return $this->hasMany('App\Models\Usuario\UsuarioCursamiento', 'usuario_id', 'id');
+    }
+
 }
