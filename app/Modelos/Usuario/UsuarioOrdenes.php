@@ -19,4 +19,14 @@ class UsuarioOrdenes extends Model
         'estado_pago',
         'paid_at'
     ];
+
+    public function getUsuario()
+    {
+        return $this->hasOne('App\Modelos\Usuario\Usuario','id', 'usuario_id');
+    }
+
+    public function getSuscripcion()
+    {
+        return $this->hasOne('App\Modelos\Catalogo\Suscripciones','id', 'suscripcion_id');
+    }
 }
