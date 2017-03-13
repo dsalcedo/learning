@@ -29,6 +29,10 @@ class CursoController extends Controller
                 'curso_id'   => $leccion->curso_id,
                 'leccion_id' => $leccion->id
             ]);
+
+            $carrera = $leccion->getCarrera;
+            $avance  = $carrera->getAvanceInt($usuario);
+
         }
 
         return redirect()->back();
