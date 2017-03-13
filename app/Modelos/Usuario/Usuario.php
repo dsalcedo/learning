@@ -21,7 +21,8 @@ class Usuario extends Authenticatable
         'email',
         'password',
         'activo',
-        'logged_out_at',
+        'premium_at',
+        'logged_out_at'
     ];
 
     /**
@@ -70,7 +71,7 @@ class Usuario extends Authenticatable
 
     public function getCursamiento()
     {
-        return $this->hasMany('App\Models\Usuario\UsuarioCursamiento', 'usuario_id', 'id');
+        return $this->hasMany('App\Modelos\Usuario\UsuarioCursamiento', 'usuario_id', 'id');
     }
 
 }

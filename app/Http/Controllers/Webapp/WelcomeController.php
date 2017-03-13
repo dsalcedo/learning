@@ -17,6 +17,7 @@ class WelcomeController extends Controller
     {
         $usuario  = $this->req->user();
         $carreras = Carreras::where('publicado', true)->get();
+
         $args = compact('usuario', 'carreras');
         return view('webapp.index', $args);
     }

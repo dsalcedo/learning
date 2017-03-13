@@ -24,6 +24,10 @@
 
         @foreach($carreras as $carrera)
         <div class="col-md-4">
+            @php
+                $a = $carrera->getAvance()->where('usuario_id', $usuario->id)->first(['avance']);
+                $a = $a->avance;
+            @endphp
             <div class="panel panel-default">
                 <!-- Default panel contents -->
                 <div class="panel-heading carrera-header" style="
@@ -40,9 +44,6 @@
                     <p>{{ $carrera->descripcion }}</p>
                     <div class="row">
                         <div class="col-md-11">
-                            @php
-                                $a = $carrera->getAvanceInt($usuario);
-                            @endphp
                             <div class="progress">
                                 <span class="porcentaje-avance">{{ $a }}%</span>
                                 <div class="progress-bar bar-colorful" role="progressbar" aria-valuenow="{{ $a }}" aria-valuemin="0" aria-valuemax="100" style="min-width: {{ $a }}%;">
@@ -67,7 +68,7 @@
                             </span>
                         </a>
                     @endforeach
-                    @if($a>=100)
+                    @if( $a >= 100)
                             <a href="" class="list-group-item text-center examen">
                                 <i class="fa fa-graduation-cap" aria-hidden="true"></i>
                                  Tomar el examen de certificación
@@ -80,4 +81,8 @@
 
     </div> <!-- /container -->
 
+@endsection
+
+
+@section('js')
 @endsection

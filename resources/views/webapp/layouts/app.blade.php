@@ -57,9 +57,9 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('webapp.perfil') }}">Mi perfil</a></li>
-                        <li><a href="#">Mi suscripción</a></li>
+                        <li><a href="{{ route('mi.suscripcion') }}">Mi suscripción</a></li>
                         <li><a href="{{ route('webapp.compras') }}">Mis compras</a></li>
-                        <li><a href="{{ route('webapp.compras') }}" style="font-style: italic;">
+                        <li><a href="{{ route('webapp.redeem') }}" style="font-style: italic;">
                                 <i class="fa fa-gift" aria-hidden="true"></i>
                                 Redeem
                             </a></li>

@@ -22,18 +22,25 @@ class CursoController extends Controller
     {
         $usuario = $this->req->user();
         $avance  = $usuario->avances()->where('leccion_id', $leccion->id)->first();
+        $curso   = $leccion->getCurso;
 
         if(is_null($avance)){
             $usuario->avances()->create([
-                'carrera_id' => $leccion->getCurso->carrera_id,
+                'carrera_id' => $curso->carrera_id,
                 'curso_id'   => $leccion->curso_id,
                 'leccion_id' => $leccion->id
             ]);
-
-            $carrera = $leccion->getCarrera;
-            $avance  = $carrera->getAvanceInt($usuario);
-
         }
+
+        $avance = $curso->getCarrera->getAvanceInt($usuario);
+
+        $usuario->getCursamiento()->updateOrCreate([
+            'carrera_id' => $curso->carrera_id,
+            'avance' => $avance
+        ],[
+            'carrera_id' => $curso->carrera_id,
+            'avance' => $avance
+        ]);
 
         return redirect()->back();
     }

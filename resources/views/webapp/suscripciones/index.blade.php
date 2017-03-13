@@ -123,12 +123,7 @@
             -o-transition: all 0.7s ease-in-out;
             transition: all 0.7s ease-in-out;
         }
-    </style>
-@endsection
 
-@section('content')
-
-    <style>
         .paymentWrap {
             padding: 0px 10px;
             margin-bottom: 30px;
@@ -192,7 +187,25 @@
             border-color: #4cd264;
             outline: none;
         }
+        .precio{
+            background-color: #0fb112;
+            color: #fff;
+            font-size: 30px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+        .duracion{
+            background-color: #da5965;
+            width: 100%;
+            display: block;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            color: #fafafa;
+        }
     </style>
+@endsection
+
+@section('content')
     <div class="container">
 
         @foreach($suscripciones as $s)
@@ -201,9 +214,9 @@
                     {!! Form::open(['route'=>['comprar.suscripcion', $s->id, $s->clave]] ) !!}
                     <div class="option-title">
                         <h3>{{ $s->nombre }}</h3>
-                        <span>Duración de {{ $s->duracion }} días</span>
+                        <span class="duracion">Duración de {{ $s->duracion }} días</span>
                     </div>
-                    <div class="option-price">
+                    <div class="option-price precio">
                         <span class="price">${{ $s->costo }}</span>
                         <span class="period">MXN</span>
                     </div>

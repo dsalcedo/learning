@@ -45,4 +45,9 @@ class Carreras extends Model
 
         return $p;
     }
+
+    public function getAvance()
+    {
+        return $this->hasOne('App\Modelos\Usuario\UsuarioCursamiento', 'carrera_id', 'id');
+    }
 }

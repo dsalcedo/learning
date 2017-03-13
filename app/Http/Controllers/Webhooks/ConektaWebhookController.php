@@ -72,7 +72,7 @@ class ConektaWebhookController extends Controller
                 'suscripcion_id' => $suscripcion->id,
                 'orden_id'       => $orden->id,
                 'activo'         => true,
-                'expires_at'     => $fecha->format('Y-m-d H:i:s')
+                'expires_at'     => $fecha->format('Y-m-d 23:59:59')
             ]);
 
         }elseif ($estado == 'expired'){

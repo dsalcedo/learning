@@ -14,4 +14,14 @@ class UsuarioSuscripciones extends Model
         'activo',
         'expires_at'
     ];
+
+    public function getSuscripcion()
+    {
+        return $this->hasOne('App\Modelos\Catalogo\Suscripciones', 'id','suscripcion_id');
+    }
+
+    public function getOrden()
+    {
+        return $this->hasOne('App\Modelos\Usuario\UsuarioOrdenes', 'id','orden_id');
+    }
 }
