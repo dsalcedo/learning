@@ -16,4 +16,9 @@ class WebsiteController extends Controller
     {
         return view('website.acceso');
     }
+
+    public function privacidad()
+    {
+        return view('website.privacidad');
+    }
 }

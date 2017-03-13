@@ -1,5 +1,6 @@
 <?php
 
+Route::get('desconectarme', 'Auth\LoginController@logout')->name('desconectarme');
 Route::group(['namespace'=>'Webapp'], function (){
     Route::get('/', 'WelcomeController@index')->name('webapp.index');
 

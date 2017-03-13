@@ -12,7 +12,7 @@
             </div>
         @endif
 
-        {{ Form::open(['route'=>'perfil.update']) }}
+        {{ Form::model($usuario,['route'=>'perfil.update'], $usuario->id) }}
             <div class="form-group">
                 {{ Form::label('nombre', 'Nombre') }}
                 {{ Form::text('nombre', null, ['class'=>'form-control']) }}
@@ -28,6 +28,7 @@
             <div class="form-group">
                 {{ Form::label('password', 'Contraseña') }}
                 {{ Form::password('password', ['class'=>'form-control']) }}
+                <p class="help-block">Si deseas cambiar tu contraseña es necesario escribirla en este campo.</p>
             </div>
             <div class="col-md-12 text-center">
                 <input type="submit" class="btn btn-success" value="Actualizar mis datos">

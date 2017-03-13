@@ -12,10 +12,13 @@
 */
 
 Route::get('/', 'Website\WebsiteController@index')->name('website.index');
+
 Route::get('registro', 'Website\RegistroController@index')->name('website.registro');
 Route::post('registro', 'Auth\RegisterController@register')->name('registro.post');
 Route::get('acceso', 'Website\WebsiteController@acceso')->name('website.acceso');
 Route::post('acceso', 'Auth\LoginController@login')->name('acceso.post');
+
+Route::get('privacidad', 'Website\WebsiteController@privacidad')->name('website.privacidad');
 
 // WEBHOOKS & CALLBACKS
 Route::group(['prefix'=>'webhook', 'namespace'=>'Webhooks'], function(){

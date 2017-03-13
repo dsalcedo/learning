@@ -58,13 +58,9 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('webapp.perfil') }}">Mi perfil</a></li>
                         <li><a href="{{ route('mi.suscripcion') }}">Mi suscripción</a></li>
-                        <li><a href="{{ route('webapp.compras') }}">Mis compras</a></li>
-                        <li><a href="{{ route('webapp.redeem') }}" style="font-style: italic;">
-                                <i class="fa fa-gift" aria-hidden="true"></i>
-                                Redeem
-                            </a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#"><i class="fa fa-sign-out" aria-hidden="true"></i> Salir</a></li>
+                        <li><a href="{{ route('webapp.redeem') }}" style="font-style: italic;"><i class="fa fa-gift" aria-hidden="true"></i> Redeem</a></li>
+                        <li><a href="{{ route('desconectarme') }}"><i class="fa fa-sign-out" aria-hidden="true"></i> Salir</a></li>
                     </ul>
                 </li>
             </ul>
