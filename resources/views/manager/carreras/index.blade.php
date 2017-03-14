@@ -14,6 +14,7 @@
                 <tr>
                     <th>Nombre</th>
                     <th>Estado</th>
+                    <th>Exámen</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,6 +26,11 @@
                         </a>
                     </td>
                     <td>{{ ($c->publicado) ? 'Publicado' : 'Borrador' }}</td>
+                    <td>
+                        <a href="{{ route('examenes.carreras',  $c->id) }}">
+                            <img src="{{ asset('images/examen.png') }}" style="width: 20px;"> Agregar
+                        </a>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

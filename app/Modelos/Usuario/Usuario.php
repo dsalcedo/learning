@@ -21,6 +21,10 @@ class Usuario extends Authenticatable
         'email',
         'password',
         'activo',
+        'locked',
+        'premium',
+        'ip',
+        'logged_in_at',
         'premium_at',
         'logged_out_at'
     ];

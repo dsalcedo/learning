@@ -75,6 +75,17 @@ class ConektaWebhookController extends Controller
                 'expires_at'     => $fecha->format('Y-m-d 23:59:59')
             ]);
 
+            if(is_null($usuario->premium_at)){
+                $usuario->premium_at = $fecha;
+            }else{
+                $bdia  = Carbon::parse($usuario->premium_at);
+                $build = $bdia->addDays($suscripcion->duracion);
+                $usuario->premium_at = $build->format('Y-m-d 23:59:59');
+            }
+
+            $usuario->premium = true;
+            $usuario->save();
+
         }elseif ($estado == 'expired'){
 
             $orden->estado_interno = 'cancelado';

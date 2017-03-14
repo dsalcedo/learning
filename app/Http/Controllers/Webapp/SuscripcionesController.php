@@ -232,13 +232,25 @@ class SuscripcionesController extends Controller
                     'activo'         => true,
                     'expires_at'     => $fecha->format('Y-m-d 23:59:59')
                 ]);
+
+                if(is_null($usuario->premium_at)){
+                    $usuario->premium_at = $fecha;
+                }else{
+                    $bdia  = Carbon::parse($usuario->premium_at);
+                    $build = $bdia->addDays($suscripcion->duracion);
+                    $usuario->premium_at = $build->format('Y-m-d 23:59:59');
+                }
+
+                $usuario->premium = true;
+                $usuario->save();
+
             }else{
                 dd($orden->payment_status);
             }
         }
 
 
-        return redirect()->route('webapp.compras');
+        return redirect()->route('mi.suscripcion');
 
     }
 

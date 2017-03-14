@@ -17,6 +17,13 @@ Route::group(['namespace'=>'Manager'], function (){
         Route::post('crear', 'ManagerCarrerasController@crearPost')->name('carreras.crear.post');
         Route::get('editar/{carreraId}', 'ManagerCarrerasController@editar')->name('carrera.editar');
         Route::post('editar/{carreraId}', 'ManagerCarrerasController@editarPost')->name('carrera.editar.post');
+
+        Route::group(['prefix'=>'examenes'], function (){
+            Route::get('/c/{carreraId}', 'ExamenesController@index')->name('examenes.carreras');
+            Route::get('/c/{carreraId}/crear', 'ExamenesController@crear')->name('examenes.crear');
+            Route::post('/c/{carreraId}/crear', 'ExamenesController@crearPost')->name('examenes.crear.post');
+        });
+
     });
 
     Route::group(['prefix'=>'cursos'], function (){

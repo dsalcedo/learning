@@ -8,7 +8,7 @@
             <h1 class="text-center">Aún no tienes una suscripción activa</h1>
         @else
             <h1 class="text-center">
-                Aún tienes {{ $carbon->parse($usuario->premium_at)->diffInDays( $carbon->now() ) }} días de acceso premium
+                 Tienes {{ $carbon->parse($usuario->premium_at)->diffInDays( $carbon->now() ) }} días de acceso premium
             </h1>
             <p class="text-center">Recuerda renovar tu suscripción antes del {{ $carbon->parse($usuario->premium_at)->format('d \d\e F \d\e\l Y') }}.</p>
         @endif

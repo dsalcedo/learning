@@ -25,8 +25,8 @@
         @foreach($carreras as $carrera)
         <div class="col-md-4">
             @php
-                $a = $carrera->getAvance()->where('usuario_id', $usuario->id)->first(['avance']);
-                $a = $a->avance;
+                $a = (!is_null($carrera->getAvance)) ? $carrera->getAvance()->where('usuario_id', $usuario->id)->first(['avance']) : null;
+                $a = (!is_null($a)) ? $a->avance : 0;
             @endphp
             <div class="panel panel-default">
                 <!-- Default panel contents -->

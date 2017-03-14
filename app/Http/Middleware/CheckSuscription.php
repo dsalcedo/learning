@@ -23,7 +23,7 @@ class CheckSuscription
             $c = $l->getCurso;
         }
 
-        if(!$c->gratuito && !$u->activo){ // TODO: cambiar por suscrito
+        if(!$c->gratuito && !$u->premium){
             return redirect()->route('webapp.suscripcion');
         }
 

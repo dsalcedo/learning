@@ -18,6 +18,7 @@ class MiSuscripcionController extends Controller
     {
         $usuario = $this->req->user();
         $carbon  = new Carbon();
+
         $args    = compact('usuario', 'carbon');
         return view('webapp.mi.suscripcion', $args);
     }

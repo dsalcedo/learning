@@ -14,6 +14,10 @@ class AlterUsuariosTableAddPremiumAt extends Migration
     public function up()
     {
         Schema::table('usuarios', function (Blueprint $table) {
+            $table->boolean('premium')->default(false)->after('activo');
+            $table->boolean('locked')->default(false)->after('activo');
+            $table->ipAddress('ip')->nullable()->after('activo');
+            $table->timestamp('logged_in_at')->nullable()->after('remember_token');
             $table->timestamp('premium_at')->nullable()->after('remember_token');
         });
     }
@@ -26,7 +30,7 @@ class AlterUsuariosTableAddPremiumAt extends Migration
     public function down()
     {
         Schema::table('usuarios', function (Blueprint $table) {
-            $table->dropColumn('premium_at');
+            $table->dropColumn(['premium_at','logged_in_at', 'ip', 'premium']);
         });
     }
 }
